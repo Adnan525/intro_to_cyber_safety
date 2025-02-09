@@ -1,4 +1,4 @@
-# Introduction to Cyber Safetyi - 11622
+# Introduction to Cyber Safety - 11622
 
 ## Course Overview
 This unit introduces students to fundamental cybersecurity concepts through hands-on demonstrations and practical examples. Students will learn about common attack vectors and essential defense mechanisms through controlled, educational demonstrations.
