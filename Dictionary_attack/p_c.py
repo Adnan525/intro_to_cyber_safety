@@ -1,9 +1,10 @@
 import hashlib
 import time
+from getpass import getpass
 
 def demonstrate_password_cracking():
     # The weak password we're demonstrating with
-    weak_password = input("Enter a weak password: ")
+    weak_password = getpass("Enter a weak password: ")
     
     # Create SHA256 hash of the password
     password_hash = hashlib.sha256(weak_password.encode()).hexdigest()
@@ -17,6 +18,7 @@ def demonstrate_password_cracking():
         common_passwords = f.readlines()
         common_passwords = [p.replace("\n", "") for p in common_passwords]
     # Simulate cracking attempt
+    time.sleep(2)
     start_time = time.time()
     
     for test_password in common_passwords:
@@ -30,10 +32,9 @@ def demonstrate_password_cracking():
             print(f"[+] Time taken: {end_time - start_time:.2f} seconds")
             return
         
-        # Add a small delay to make the demonstration more visible
-        time.sleep(0.5)
     
-    print("\nPassword not found in dictionary.")
+    print("\nPassword NOT found in dictionary.")
+    print(f"Your password was:{weak_password}")
 
 if __name__ == "__main__":
     print("=== Password Security Demonstration ===")

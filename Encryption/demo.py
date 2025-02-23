@@ -28,7 +28,7 @@ def main():
         print("1. Symmetric Encryption (AES)")
         print("2. Asymmetric Encryption (RSA)")
         print("3. Hashing Algorithms (MD5, SHA256)")
-        print("4. Rainbow Table Attack")
+        print("4. Rainbow-Table/Dictionary Attack")
         print("5. MD5 vs SHA256 Security")
         print("6. MD5 Collision Demonstration")
         print("0. Exit")
