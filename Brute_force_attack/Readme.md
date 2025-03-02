@@ -114,3 +114,8 @@ To protect against such attacks in real systems, implement:
 7. CAPTCHA or similar human verification
 
 Remember: Understanding security vulnerabilities is important for building better defenses, but should never be used for malicious purposes.
+
+## Resources
+
+[HackerHouse](https://www.zdnet.com/article/a-hacker-figured-out-how-to-brute-force-an-iphone-passcode/)  
+[HackerOne](https://hackerone.com/reports/1257586)
