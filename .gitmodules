@@ -1,0 +1,3 @@
+[submodule "SMTP"]
+	path = SMTP
+	url = https://github.com/Adnan525/SMTP.git
