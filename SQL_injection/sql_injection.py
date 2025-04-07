@@ -1,7 +1,8 @@
 # ===========================================================================
 # FOR DEMO ONLY.
 # For pentesting - https://www.hacksplaining.com/lessons/sql-injection
-# ==========================================================================
+# For testing - ' UNION SELECT id, username, password, Null FROM users WHERE id LIKE '
+# ===========================================================================
 from http.server import HTTPServer, BaseHTTPRequestHandler
 import sqlite3
 import urllib.parse
