@@ -21,7 +21,7 @@ def get_browser_fingerprint():
         request.accept_encodings,
     ]
     fingerprint = hashlib.sha256(''.join(str(d) for d in fingerprint_data).encode()).hexdigest()
-    print(f"\n🔍 Browser Fingerprint Generated:")
+    print(f"\nBrowser Fingerprint Generated:")
     print(f"   User-Agent: {request.user_agent.string}")
     print(f"   Generated Fingerprint: {fingerprint[:16]}...")
     return fingerprint
@@ -62,7 +62,7 @@ HTML = """
 
 @app.route('/vulnerable', methods=['GET', 'POST'])
 def vulnerable():
-    print("\n🔓 Vulnerable Version Access:")
+    print("\nVulnerable Version Access:")
 
     if request.method == 'POST':
         username = request.form.get('username')
@@ -73,13 +73,13 @@ def vulnerable():
         if USERS.get(username) == password:
             session_id = secrets.token_hex(8)
             sessions[session_id] = username
-            print(f"   ✅ Login Successful")
+            print(f"   Login Successful")
             print(f"   Generated Session ID: {session_id}")
 
             response = make_response(redirect('/vulnerable'))
             response.set_cookie('session_id', session_id)
             return response
-        print(f"   ❌ Login Failed - Invalid Credentials")
+        print(f"Login Failed - Invalid Credentials")
 
     session_id = request.cookies.get('session_id')
     if session_id:
@@ -87,9 +87,9 @@ def vulnerable():
 
     user = sessions.get(session_id)
     if user:
-        print(f"   ✅ Valid Session Found for User: {user}")
+        print(f"    Valid Session Found for User: {user}")
     else:
-        print(f"   ❌ No Valid Session Found")
+        print(f"    No Valid Session Found")
 
     return render_template_string(HTML,
                                   version="Vulnerable Version",
@@ -100,7 +100,7 @@ def vulnerable():
 
 @app.route('/secure', methods=['GET', 'POST'])
 def secure():
-    print("\n🔒 Secure Version Access:")
+    print("\nSecure Version Access:")
 
     if request.method == 'POST':
         username = request.form.get('username')
@@ -118,7 +118,7 @@ def secure():
                 'created_at': time.time()
             }
 
-            print(f"   ✅ Login Successful")
+            print(f"   Login Successful")
             print(f"   Generated Session ID: {session_id}")
             print(f"   Session Bound to Fingerprint: {fingerprint[:16]}...")
 
@@ -131,7 +131,7 @@ def secure():
                 max_age=300
             )
             return response
-        print(f"   ❌ Login Failed - Invalid Credentials")
+        print(f"   Login Failed - Invalid Credentials")
         return redirect('/secure')
 
     session_id = request.cookies.get('session_id')
@@ -155,18 +155,18 @@ def secure():
 
         # Validate session with fingerprint
         if session_age > 300:
-            print(f"   ❌ Session Expired (Age: {session_age:.1f}s)")
+            print(f"   Session Expired (Age: {session_age:.1f}s)")
             del secure_sessions[session_id]
         elif session['fingerprint'] != current_fingerprint:
-            print(f"   ❌ Fingerprint Mismatch - Possible Session Hijacking Attempt!")
+            print(f"   Fingerprint Mismatch - Possible Session Hijacking Attempt!")
             del secure_sessions[session_id]
         else:
-            print(f"   ✅ Valid Session - All Checks Passed")
+            print(f"   Valid Session - All Checks Passed")
             user = session['username']
             expiry = int(300 - session_age)
             fingerprint = session['fingerprint']
     else:
-        print("   ❌ No Session Found")
+        print("   No Session Found")
 
     return render_template_string(HTML,
                                   version="Secure Version",
@@ -179,7 +179,7 @@ def secure():
 
 @app.route('/vulnerable/logout')
 def vulnerable_logout():
-    print("\n👋 Vulnerable Version Logout:")
+    print("\nVulnerable Version Logout:")
     session_id = request.cookies.get('session_id')
     if session_id in sessions:
         print(f"   Removing Session: {session_id}")
@@ -191,7 +191,7 @@ def vulnerable_logout():
 
 @app.route('/secure/logout')
 def secure_logout():
-    print("\n👋 Secure Version Logout:")
+    print("\nSecure Version Logout:")
     session_id = request.cookies.get('session_id')
     if session_id in secure_sessions:
         print(f"   Removing Session: {session_id}")

@@ -48,6 +48,7 @@ The main goal is to educate students about:
 1. Vulnerable Version:
    - Login with credentials (student/password123)
    - Copy the session ID from browser's dev tools (Application > Cookies)
+   - Or go to console and look for document.cookie
    - Open an incognito window
    - Set the copied session ID
    - Observe successful session hijacking
