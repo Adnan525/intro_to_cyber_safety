@@ -21,9 +21,9 @@ def login():
     print(f"Received: {code}")
 
     if check_code(code):
-        return "Login successful!", 200
+        return "Login successful!\n", 200
     # try other error codes here, 401 will confuse hydra a bit here
-    return "Invalid code", 403
+    return "Invalid code\n", 403
 
 
 if __name__ == '__main__':
