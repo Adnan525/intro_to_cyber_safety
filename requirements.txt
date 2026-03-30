@@ -3,3 +3,4 @@ cryptography
 flask
 prettytable
 requests
+python-dotenv
